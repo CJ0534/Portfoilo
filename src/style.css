@@ -284,14 +284,18 @@ body {
 }
 
 /* Two-Column Hero Layout */
+/* Two-Column Hero Layout */
 .hero-split-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  max-width: 1400px;
+  display: flex;
+  /* Changed from grid to flex for width animation */
   width: 100%;
+  max-width: 1400px;
+  /* Wider to accommodate centered view */
+  height: 100%;
   padding: 0 4rem;
   align-items: center;
+  position: relative;
+  transition: all 1s ease-in-out;
 }
 
 /* Left Side - Info Area */
@@ -299,8 +303,43 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-left: 200px;
-  /* Space for nav */
+  padding-left: 0;
+  /* Initially 0 */
+  width: 0;
+  /* Initially hidden */
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  /* Prevent wrapping during transition */
+  transition: width 1s ease-in-out, opacity 0.5s ease-in-out, padding 1s ease-in-out;
+}
+
+/* Revealed State for Left Side */
+.hero-split-container.revealed .hero-left {
+  width: 50%;
+  opacity: 1;
+  padding-left: 320px;
+  /* Increased to 320px to definitively clear nav bar */
+  white-space: normal;
+}
+
+/* ... existing styles ... */
+
+/* Right Side - Card Area */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  /* Initially takes full width (centered) */
+  transition: width 1s ease-in-out;
+}
+
+/* Revealed State for Right Side */
+.hero-split-container.revealed .hero-right {
+  width: 50%;
 }
 
 .hero-title {
@@ -467,7 +506,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
+  width: 100%;
+  /* Initially takes full width (centered) */
+  transition: width 1s ease-in-out;
 }
 
 .card-wrapper {
@@ -605,6 +648,34 @@ body {
   backdrop-filter: blur(10px);
   margin: 0;
   font-weight: 500;
+}
+
+/* Initial Hidden State */
+.hero-left,
+.hero-description {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.8s ease-out;
+  filter: blur(10px);
+}
+
+/* Reveal State */
+.reveal-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  filter: blur(0) !important;
+}
+
+/* Click Hint Fade Out */
+.click-hint {
+  transition: opacity 0.5s ease;
+}
+
+.click-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes pulse-text {

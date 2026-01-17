@@ -93,9 +93,56 @@ document.querySelector('#app').innerHTML = `
 // Flip card functionality
 const flipCard = document.querySelector('.flip-card');
 const flipCardInner = document.querySelector('.flip-card-inner');
+const heroLeft = document.querySelector('.hero-left');
+const heroDescription = document.querySelector('.hero-description');
+const clickHint = document.querySelector('.click-hint');
+const heroSplitContainer = document.querySelector('.hero-split-container');
+
+let isRevealed = false;
+let isAnimating = false;
 
 flipCard.addEventListener('click', () => {
-  flipCardInner.classList.toggle('flipped');
+  if (isAnimating) return; // Prevent clicks during animation
+  isAnimating = true;
+
+  if (!isRevealed) {
+    // REVEAL SEQUENCE
+    // 1. Move to side
+    heroSplitContainer.classList.add('revealed');
+
+    // 2. Flip card after movement starts
+    setTimeout(() => {
+      flipCardInner.classList.add('flipped');
+    }, 800);
+
+    // 3. Reveal details after flip
+    setTimeout(() => {
+      heroLeft.classList.add('reveal-active');
+      heroDescription.classList.add('reveal-active');
+      clickHint.classList.add('hidden');
+      isRevealed = true;
+      isAnimating = false;
+    }, 1400);
+
+  } else {
+    // HIDE SEQUENCE (RESET)
+    // 1. Hide details
+    heroLeft.classList.remove('reveal-active');
+    heroDescription.classList.remove('reveal-active');
+
+    // 2. Flip card back
+    setTimeout(() => {
+      flipCardInner.classList.remove('flipped');
+    }, 500);
+
+    // 3. Move back to center
+    setTimeout(() => {
+      heroSplitContainer.classList.remove('revealed');
+      clickHint.classList.remove('hidden');
+      isRevealed = false;
+      isAnimating = false;
+    }, 1100);
+  }
 });
 
 // Smooth scroll navigation
