@@ -1,0 +1,88 @@
+/* RGB Color Replacements - Apply these to style.css */
+
+/* Navigation Items */
+.nav-item {
+    border: 1px solid rgba(255, 0, 128, 0.2);
+}
+
+.nav-item::before {
+    border: 2px solid rgba(255, 0, 128, 0.5);
+}
+
+.nav-item::after {
+    background: linear-gradient(90deg, #ff0080, #00ffff, transparent);
+    box-shadow: 0 0 10px #ff0080;
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.05), rgba(0, 255, 255, 0.05));
+    border-color: rgba(255, 0, 128, 0.5);
+}
+
+.nav-item:hover::before {
+    background: linear-gradient(135deg, #ff0080, #00ffff);
+    box-shadow: 0 0 15px #ff0080, 0 0 15px #00ffff;
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(0, 255, 255, 0.1));
+    border: 1px solid;
+    border-image: linear-gradient(135deg, #ff0080, #00ffff) 1;
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3), 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.nav-item.active::before {
+    background: linear-gradient(135deg, #ff0080, #00ffff);
+    box-shadow: 0 0 20px #ff0080, 0 0 20px #00ffff;
+}
+
+/* Hero Title */
+.hero-title {
+    background: linear-gradient(90deg, #ff0080, #ff8000, #ffff00, #00ff00, #00ffff, #8000ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(255, 0, 128, 0.5));
+}
+
+/* Stats */
+.stat-item {
+    border-left: 3px solid;
+    border-image: linear-gradient(180deg, #ff0080, #00ffff) 1;
+}
+
+.stat-item:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 128, 0.05), rgba(0, 255, 255, 0.05));
+}
+
+.stat-label {
+    background: linear-gradient(90deg, #ff0080, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Section Titles */
+.section-title {
+    background: linear-gradient(90deg, #ff0080, #ff8000, #ffff00, #00ff00, #00ffff, #8000ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px rgba(255, 0, 128, 0.5));
+}
+
+/* Click Hint */
+.click-hint {
+    background: linear-gradient(90deg, #ff0080, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero Description */
+.hero-description {
+    border-left: 3px solid;
+    border-image: linear-gradient(180deg, #ff0080, #00ffff) 1;
+}
